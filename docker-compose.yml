@@ -1,11 +1,10 @@
-version: '3.8'
-
 services:
   app:
-    build: .
-    working_dir: /app
-    user: "${UID:-1000}:${GID:-1000}"
-    volumes:
-      - ./app:/app
+    build:
+      context: .
+      dockerfile: Dockerfile.production
+    image: allegrogh/devops-for-programmers-project-74
+    environment:
+      NODE_ENV: production
     command: make test
 
