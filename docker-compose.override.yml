@@ -2,10 +2,9 @@ version: '3.8'
 
 services:
   app:
-    build: .
-    working_dir: /app
     ports:
-       - "8080:8080"
-    volumes:
-      - ./app:/app
+      - "8080:8080"
     command: npm run dev
+    environment:
+      - NODE_ENV=development
+

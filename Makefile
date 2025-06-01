@@ -6,3 +6,6 @@ test:
 
 dev:
 	docker compose up
+
+migrate:
+	docker compose run --rm app npm run migrate
