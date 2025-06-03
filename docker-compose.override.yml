@@ -9,10 +9,10 @@ services:
       - ./app:/app
     environment:
       NODE_ENV: development
+    command: make dev
     depends_on:
       db:
         condition: service_healthy
-    command: make dev
 
   caddy:
     image: caddy:2-alpine

@@ -1,15 +1,21 @@
 services:
   app:
+    image: allegrogh/devops-for-programmers-project-74
     build:
       context: .
       dockerfile: Dockerfile.production
-    image: allegrogh/devops-for-programmers-project-74
     environment:
       NODE_ENV: production
+      DATABASE_HOST: db
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: password
+      DATABASE_NAME: postgres      
+    volumes:
+      - ./app:/app
+    command: make test
     depends_on:
       db:
         condition: service_healthy
-    command: make test
 
   db:
     image: postgres:latest
@@ -17,15 +23,15 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 5s
       timeout: 5s
       retries: 5
-    ports:
-      - "5432:5432"
+#     ports:
+#       - "5432:5432"
 
-volumes:
-  postgres_data:
+# volumes:
+#   postgres_data:
