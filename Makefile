@@ -16,5 +16,3 @@ prod-build:
 prod-push:
 	docker compose -f docker-compose.yml push app
 
-# migrate:
-# 	docker compose run --rm app npm run migrate
